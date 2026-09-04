@@ -1,0 +1,40 @@
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+.formulario {
+  max-width: 46rem;
+}
+
+.linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--borda);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .linha {
+    grid-template-columns: 1fr;
+  }
+}

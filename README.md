@@ -1,59 +1,65 @@
-# PicpayDesafioFrontend
+# PicPay Recrutamento — Front-end
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.6.
+Interface web do sistema interno de contratação de funcionários do PicPay.
+Consome a API REST em Spring Boot do repositório `picpay-desafio-backend`.
 
-## Development server
+- **Framework:** Angular 22 (standalone, zoneless)
+- **Estilização:** Bootstrap 5 + CSS próprio com a identidade visual do PicPay
+- **Comunicação:** `HttpClient` sobre HTTP
 
-To start a local development server, run:
+## Como rodar
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+O backend precisa estar no ar primeiro, em `http://localhost:8080`.
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+A aplicação abre em `http://localhost:4200`.
 
-```bash
-ng generate --help
+O endereço da API fica em uma constante única, no topo de
+`src/app/services/funcionario.service.ts`.
+
+## Telas
+
+| Tela | Rota | Métodos HTTP |
+|---|---|---|
+| Início | `/` | GET |
+| Candidatos | `/candidatos` | GET, DELETE |
+| Novo candidato | `/candidatos/novo` | POST |
+| Detalhes | `/candidatos/:id` | GET por ID, PATCH, DELETE |
+| Editar | `/candidatos/:id/editar` | GET por ID, PUT |
+
+A busca e os indicadores (total, em análise, aprovados, reprovados,
+contratados) são calculados no Angular a partir do `GET /funcionarios`, porque
+a API não expõe endpoint próprio para eles.
+
+## Organização
+
+```
+src/app/
+├── models/funcionario.model.ts      Tipos que espelham o backend
+├── services/funcionario.service.ts  Os cinco métodos HTTP, um por bloco
+├── pages/
+│   ├── home/                        Busca e indicadores
+│   ├── candidatos/                  Listagem, busca e exclusão
+│   ├── candidato-form/              Cadastro (POST) e edição (PUT)
+│   └── candidato-detalhe/           Dados, atualização parcial (PATCH), exclusão
+├── app.routes.ts                    Rotas
+└── app.config.ts                    HttpClient, Router e locale pt-BR
 ```
 
-## Building
+## PUT e PATCH
 
-To build the project run:
+**PUT** substitui todos os campos do candidato de uma vez. Por isso a tela de
+edição carrega os valores atuais antes de deixar salvar.
 
-```bash
-ng build
-```
+**PATCH** altera apenas os campos enviados. O painel "Atualização rápida" na
+tela de detalhes monta o corpo só com o que foi preenchido.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Estado sem Zone.js
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+O projeto roda sem `zone.js`. Atribuir valor direto a um campo da classe não
+redesenha a tela, então todo o estado dos componentes usa `signal()` e é lido
+com parênteses no template (`candidatos()`).

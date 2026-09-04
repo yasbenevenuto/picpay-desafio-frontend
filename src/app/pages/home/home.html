@@ -1,0 +1,78 @@
+<section class="abertura">
+  <h1>Quem esta no processo agora</h1>
+  <p class="texto-suave abertura-texto">
+    Acompanhe os candidatos do processo de contratacao e encontre qualquer um
+    deles pelo nome, cargo ou etapa.
+  </p>
+</section>
+
+@if (erro()) {
+  <div class="aviso-erro mb-4">{{ erro() }}</div>
+}
+
+<section class="painel" aria-label="Indicadores do processo">
+  <div class="indicador indicador-destaque">
+    <span class="indicador-numero">{{ total() }}</span>
+    <span class="indicador-nome">Candidatos no total</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-numero">{{ emAnalise() }}</span>
+    <span class="indicador-nome">Em analise</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-numero">{{ aprovados() }}</span>
+    <span class="indicador-nome">Aprovados</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-numero">{{ reprovados() }}</span>
+    <span class="indicador-nome">Reprovados</span>
+  </div>
+  <div class="indicador">
+    <span class="indicador-numero">{{ contratados() }}</span>
+    <span class="indicador-nome">Contratados</span>
+  </div>
+</section>
+
+<section class="cartao busca">
+  <label class="rotulo-campo" for="busca-rh">
+    Procurar candidato por nome, cargo ou status
+  </label>
+  <input
+    id="busca-rh"
+    class="campo"
+    type="search"
+    placeholder="Ex.: Ana, Designer, Aprovado"
+    [value]="termo()"
+    (input)="aoDigitar($event)"
+  />
+
+  @if (carregando()) {
+    <p class="texto-suave mt-3 mb-0">Carregando candidatos...</p>
+  } @else if (termo().trim() === '') {
+    <p class="texto-suave mt-3 mb-0">
+      Digite alguma coisa acima para ver os candidatos correspondentes.
+    </p>
+  } @else if (resultados().length === 0) {
+    <p class="texto-suave mt-3 mb-0">
+      Nenhum candidato corresponde a "{{ termo() }}".
+    </p>
+  } @else {
+    <ul class="lista-resultados">
+      @for (candidato of resultados(); track candidato.id) {
+        <li>
+          <a class="resultado" [routerLink]="['/candidatos', candidato.id]">
+            <span class="resultado-nome">{{ candidato.nome }}</span>
+            <span class="texto-suave">{{ candidato.cargo }}</span>
+            <span [class]="classe(candidato.status)">
+              {{ rotulo(candidato.status) }}
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</section>
+
+<p class="mt-4 mb-0">
+  <a routerLink="/candidatos">Ver a lista completa de candidatos</a>
+</p>

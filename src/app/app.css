@@ -1,0 +1,76 @@
+.cabecalho {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--borda);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.cabecalho-conteudo {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-block: 1rem;
+}
+
+.marca {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.marca-nome {
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--verde);
+}
+
+.marca-area {
+  font-size: 0.9375rem;
+  color: var(--tinta-suave);
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  margin-inline-end: auto;
+}
+
+.menu a {
+  color: var(--tinta-suave);
+  font-weight: 500;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+}
+
+.menu a:hover {
+  color: var(--tinta);
+}
+
+.menu a.ativo {
+  color: var(--tinta);
+  border-bottom-color: var(--verde);
+}
+
+.conteudo {
+  padding-block: 2.5rem 4rem;
+  min-height: 70vh;
+}
+
+.rodape {
+  border-top: 1px solid var(--borda);
+  padding-block: 1.5rem;
+  background-color: var(--fundo-suave);
+}
+
+@media (max-width: 640px) {
+  .cabecalho-conteudo {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .marca-area {
+    display: none;
+  }
+}

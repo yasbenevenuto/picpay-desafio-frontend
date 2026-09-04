@@ -1,0 +1,122 @@
+<p class="mb-3">
+  <a routerLink="/candidatos">Voltar para a lista</a>
+</p>
+
+<h1>{{ editando() ? 'Editar candidato' : 'Novo candidato' }}</h1>
+<p class="texto-suave subtitulo">
+  @if (editando()) {
+    Salvar envia um PUT e substitui todos os campos do candidato. Deixe
+    preenchido o que deve continuar como esta.
+  } @else {
+    Nome, e-mail e cargo sao obrigatorios. O numero do candidato e gerado
+    automaticamente pela API.
+  }
+</p>
+
+@if (erro()) {
+  <div class="aviso-erro mb-4">{{ erro() }}</div>
+}
+
+@if (carregando()) {
+  <p class="texto-suave">Carregando dados do candidato...</p>
+} @else {
+  <form class="cartao formulario" [formGroup]="formulario" (ngSubmit)="salvar()">
+    <div class="linha">
+      <div class="grupo">
+        <label class="rotulo-campo" for="nome">Nome completo</label>
+        <input
+          id="nome"
+          class="campo"
+          [class.invalido]="invalido('nome')"
+          type="text"
+          formControlName="nome"
+        />
+        @if (invalido('nome')) {
+          <p class="erro-campo">Informe o nome do candidato.</p>
+        }
+      </div>
+
+      <div class="grupo">
+        <label class="rotulo-campo" for="email">E-mail</label>
+        <input
+          id="email"
+          class="campo"
+          [class.invalido]="invalido('email')"
+          type="email"
+          formControlName="email"
+        />
+        @if (invalido('email')) {
+          <p class="erro-campo">Informe um e-mail valido.</p>
+        }
+      </div>
+    </div>
+
+    <div class="linha">
+      <div class="grupo">
+        <label class="rotulo-campo" for="cargo">Cargo</label>
+        <input
+          id="cargo"
+          class="campo"
+          [class.invalido]="invalido('cargo')"
+          type="text"
+          formControlName="cargo"
+        />
+        @if (invalido('cargo')) {
+          <p class="erro-campo">Informe o cargo pretendido.</p>
+        }
+      </div>
+
+      <div class="grupo">
+        <label class="rotulo-campo" for="departamento">Departamento</label>
+        <input
+          id="departamento"
+          class="campo"
+          type="text"
+          formControlName="departamento"
+        />
+      </div>
+    </div>
+
+    <div class="linha">
+      <div class="grupo">
+        <label class="rotulo-campo" for="telefone">Telefone</label>
+        <input id="telefone" class="campo" type="text" formControlName="telefone" />
+      </div>
+
+      <div class="grupo">
+        <label class="rotulo-campo" for="cidade">Cidade</label>
+        <input id="cidade" class="campo" type="text" formControlName="cidade" />
+      </div>
+    </div>
+
+    <div class="linha">
+      <div class="grupo">
+        <label class="rotulo-campo" for="salario">Salario pretendido</label>
+        <input
+          id="salario"
+          class="campo"
+          type="number"
+          step="0.01"
+          min="0"
+          formControlName="salario"
+        />
+      </div>
+
+      <div class="grupo">
+        <label class="rotulo-campo" for="status">Status no processo</label>
+        <select id="status" class="campo" formControlName="status">
+          @for (opcao of statusDisponiveis; track opcao) {
+            <option [value]="opcao">{{ rotulo(opcao) }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <button type="submit" class="btn btn-picpay" [disabled]="salvando()">
+        {{ salvando() ? 'Salvando...' : 'Salvar candidato' }}
+      </button>
+      <a routerLink="/candidatos" class="btn btn-picpay-claro">Cancelar</a>
+    </div>
+  </form>
+}

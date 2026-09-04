@@ -1,0 +1,95 @@
+.abertura {
+  max-width: 46rem;
+  margin-bottom: 2.5rem;
+}
+
+.abertura h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.abertura-texto {
+  font-size: 1.0625rem;
+  max-width: 34rem;
+  margin-bottom: 0;
+}
+
+.painel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.indicador {
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background-color: #ffffff;
+}
+
+.indicador-destaque {
+  background-color: var(--verde);
+  border-color: var(--verde);
+  color: #ffffff;
+}
+
+.indicador-destaque .indicador-nome {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.indicador-numero {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.indicador-nome {
+  font-size: 0.875rem;
+  color: var(--tinta-suave);
+}
+
+.busca {
+  max-width: 42rem;
+}
+
+.lista-resultados {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.lista-resultados li + li {
+  border-top: 1px solid var(--borda);
+}
+
+.resultado {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 0.25rem;
+  color: var(--tinta);
+  border-radius: 8px;
+}
+
+.resultado:hover {
+  background-color: var(--fundo-suave);
+  color: var(--tinta);
+}
+
+.resultado-nome {
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .resultado {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}

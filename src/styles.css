@@ -1,1 +1,196 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --verde: #21c25e;
+  --verde-escuro: #1aa34d;
+  --verde-suave: #e8f8ee;
+  --tinta: #1b1f23;
+  --tinta-suave: #667085;
+  --borda: #e5e8eb;
+  --fundo-suave: #fafbfc;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--tinta);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tinta);
+}
+
+a {
+  color: var(--verde-escuro);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--verde);
+}
+
+
+.btn-picpay {
+  background-color: var(--verde);
+  border: 1px solid var(--verde);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.55rem 1.5rem;
+}
+
+.btn-picpay:hover,
+.btn-picpay:focus {
+  background-color: var(--verde-escuro);
+  border-color: var(--verde-escuro);
+  color: #ffffff;
+}
+
+.btn-picpay-claro {
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+  color: var(--tinta);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.55rem 1.5rem;
+}
+
+.btn-picpay-claro:hover,
+.btn-picpay-claro:focus {
+  border-color: var(--verde);
+  color: var(--verde-escuro);
+}
+
+.btn-picpay-perigo {
+  background-color: #ffffff;
+  border: 1px solid #f2c2c2;
+  color: #c0392b;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.55rem 1.5rem;
+}
+
+.btn-picpay-perigo:hover,
+.btn-picpay-perigo:focus {
+  background-color: #fdf1f0;
+  color: #a93226;
+}
+
+.btn-picpay:focus-visible,
+.btn-picpay-claro:focus-visible,
+.btn-picpay-perigo:focus-visible,
+.campo:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--verde);
+  outline-offset: 2px;
+}
+
+
+.campo {
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  width: 100%;
+  color: var(--tinta);
+  background-color: #ffffff;
+}
+
+.campo:focus {
+  border-color: var(--verde);
+  box-shadow: 0 0 0 3px var(--verde-suave);
+  outline: none;
+}
+
+.campo.invalido {
+  border-color: #e07a72;
+}
+
+.rotulo-campo {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.erro-campo {
+  font-size: 0.8125rem;
+  color: #c0392b;
+  margin-top: 0.25rem;
+}
+
+
+.cartao {
+  background-color: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+
+.etiqueta {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.etiqueta-analise {
+  background-color: #fff6e5;
+  color: #a56b00;
+}
+
+.etiqueta-aprovado {
+  background-color: var(--verde-suave);
+  color: var(--verde-escuro);
+}
+
+.etiqueta-reprovado {
+  background-color: #fdeceb;
+  color: #c0392b;
+}
+
+.etiqueta-contratado {
+  background-color: var(--verde);
+  color: #ffffff;
+}
+
+.etiqueta-neutro {
+  background-color: #f1f3f5;
+  color: var(--tinta-suave);
+}
+
+
+.aviso-erro {
+  background-color: #fdeceb;
+  border: 1px solid #f2c2c2;
+  color: #a93226;
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+}
+
+.aviso-sucesso {
+  background-color: var(--verde-suave);
+  border: 1px solid var(--verde);
+  color: var(--verde-escuro);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+}
+
+.texto-suave {
+  color: var(--tinta-suave);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

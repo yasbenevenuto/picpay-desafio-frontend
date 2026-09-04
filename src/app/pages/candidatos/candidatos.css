@@ -1,0 +1,92 @@
+.topo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.topo h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 0.35rem;
+}
+
+.barra-busca {
+  max-width: 26rem;
+  margin-bottom: 1.5rem;
+}
+
+.tabela-caixa {
+  padding: 0.5rem 0.75rem;
+  overflow-x: auto;
+}
+
+.tabela-caixa th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  border-bottom: 1px solid var(--borda);
+  padding-block: 0.85rem;
+}
+
+.tabela-caixa td {
+  border-bottom: 1px solid var(--borda);
+  padding-block: 0.9rem;
+}
+
+.tabela-caixa tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabela-caixa tbody tr:hover {
+  background-color: var(--fundo-suave);
+}
+
+.link-nome {
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.link-nome:hover {
+  color: var(--verde-escuro);
+}
+
+.acao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--borda);
+  background-color: #ffffff;
+  color: var(--tinta-suave);
+  margin-inline-start: 0.35rem;
+}
+
+.acao:hover {
+  border-color: var(--verde);
+  color: var(--verde-escuro);
+}
+
+.acao-perigo:hover {
+  border-color: #f2c2c2;
+  color: #c0392b;
+}
+
+.vazio {
+  text-align: center;
+  padding-block: 3rem;
+}
+
+.vazio h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .topo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

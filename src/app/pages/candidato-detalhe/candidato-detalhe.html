@@ -1,0 +1,117 @@
+<p class="mb-3">
+  <a routerLink="/candidatos">Voltar para a lista</a>
+</p>
+
+@if (erro()) {
+  <div class="aviso-erro mb-4">{{ erro() }}</div>
+}
+
+@if (aviso()) {
+  <div class="aviso-sucesso mb-4">{{ aviso() }}</div>
+}
+
+@if (carregando()) {
+  <p class="texto-suave">Carregando candidato...</p>
+} @else if (candidato(); as pessoa) {
+  <div class="topo">
+    <div>
+      <span [class]="classe(pessoa.status)">{{ rotulo(pessoa.status) }}</span>
+      <h1>{{ pessoa.nome }}</h1>
+      <p class="texto-suave mb-0">
+        {{ pessoa.cargo }}
+        @if (pessoa.departamento) {
+          - {{ pessoa.departamento }}
+        }
+      </p>
+    </div>
+
+    <div class="botoes-topo">
+      <a [routerLink]="['/candidatos', pessoa.id, 'editar']" class="btn btn-picpay">
+        Editar tudo
+      </a>
+      <button type="button" class="btn btn-picpay-perigo" (click)="excluir()">
+        Excluir
+      </button>
+    </div>
+  </div>
+
+  <div class="colunas">
+    <section class="cartao">
+      <h2>Dados do candidato</h2>
+      <dl class="dados">
+        <dt>Numero</dt>
+        <dd>{{ pessoa.id }}</dd>
+
+        <dt>E-mail</dt>
+        <dd>{{ pessoa.email }}</dd>
+
+        <dt>Telefone</dt>
+        <dd>{{ pessoa.telefone || 'Nao informado' }}</dd>
+
+        <dt>Cargo</dt>
+        <dd>{{ pessoa.cargo }}</dd>
+
+        <dt>Departamento</dt>
+        <dd>{{ pessoa.departamento || 'Nao informado' }}</dd>
+
+        <dt>Cidade</dt>
+        <dd>{{ pessoa.cidade || 'Nao informada' }}</dd>
+
+        <dt>Salario</dt>
+        <dd>
+          @if (pessoa.salario !== null) {
+            {{ pessoa.salario | currency: 'BRL' }}
+          } @else {
+            Nao informado
+          }
+        </dd>
+      </dl>
+    </section>
+
+    <section class="cartao">
+      <h2>Atualizacao rapida</h2>
+      <p class="texto-suave">
+        Muda so o que voce preencher aqui. O resto dos dados continua igual.
+      </p>
+
+      <label class="rotulo-campo" for="patch-status">Novo status</label>
+      <select
+        id="patch-status"
+        class="campo mb-3"
+        [value]="novoStatus()"
+        (change)="aoMudarStatus($event)"
+      >
+        <option value="">Manter como esta</option>
+        @for (opcao of statusDisponiveis; track opcao) {
+          <option [value]="opcao">{{ rotulo(opcao) }}</option>
+        }
+      </select>
+
+      <label class="rotulo-campo" for="patch-cargo">Novo cargo</label>
+      <input
+        id="patch-cargo"
+        class="campo mb-3"
+        type="text"
+        placeholder="Deixe vazio para manter"
+        [value]="novoCargo()"
+        (input)="aoDigitarCargo($event)"
+      />
+
+      <label class="rotulo-campo" for="patch-salario">Novo salario</label>
+      <input
+        id="patch-salario"
+        class="campo mb-3"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Deixe vazio para manter"
+        [value]="novoSalario()"
+        (input)="aoDigitarSalario($event)"
+      />
+
+      <button type="button" class="btn btn-picpay" (click)="salvarAlteracaoParcial()">
+        Salvar alteracao
+      </button>
+    </section>
+  </div>
+}

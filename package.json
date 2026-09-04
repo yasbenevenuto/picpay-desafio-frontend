@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:picpay-desafio-frontend": "node dist/picpay-desafio-frontend/server/server.mjs"
+    "test": "ng test"
   },
   "private": true,
   "packageManager": "npm@11.17.0",
@@ -17,7 +16,6 @@
     "@angular/core": "^22.1.0",
     "@angular/forms": "^22.1.0",
     "@angular/platform-browser": "^22.1.0",
-    "@angular/platform-server": "^22.1.0",
     "@angular/router": "^22.1.0",
     "bootstrap": "^5.3.8",
     "rxjs": "~7.8.0",
@@ -27,7 +25,6 @@
     "@angular/build": "^22.1.6",
     "@angular/cli": "^22.1.6",
     "@angular/compiler-cli": "^22.1.0",
-    "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
