@@ -11,6 +11,7 @@ export interface OpcaoCampo {
   styleUrl: './campo-filtro.css',
 })
 export class CampoFiltro {
+
   rotulo = input.required<string>();
   valor = input('');
   opcoes = input<OpcaoCampo[]>([]);

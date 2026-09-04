@@ -6,7 +6,6 @@ interface ItemMenu {
   exata: boolean;
   nome: string;
   icone: string;
-  iconeBranco: string;
 }
 
 @Component({
@@ -22,14 +21,12 @@ export class BarraLateral {
       exata: true,
       nome: 'Início',
       icone: 'assets/icone-inicio.png',
-      iconeBranco: 'assets/icone-inicio-branco.png',
     },
     {
       rota: '/candidatos',
       exata: false,
       nome: 'Candidatos',
       icone: 'assets/icone-candidatos.png',
-      iconeBranco: 'assets/icone-candidatos-branco.png',
     },
   ];
 }

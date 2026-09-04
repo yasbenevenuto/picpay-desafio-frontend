@@ -1,4 +1,3 @@
-/* O host é quem é filho do flex do shell, então é ele que precisa esticar. */
 :host {
   display: block;
   align-self: stretch;
@@ -44,6 +43,14 @@
 
 .item.ativo .circulo {
   background-color: var(--preto);
+}
+
+.item.ativo .circulo img {
+  filter: invert(1);
+}
+
+.item.ativo .nome {
+  display: none;
 }
 
 .item:not(.ativo):hover .circulo {

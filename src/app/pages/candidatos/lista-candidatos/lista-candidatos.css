@@ -1,5 +1,5 @@
 :host {
-  /* Uma definição de colunas só, usada pelo cabeçalho e por cada linha. */
+
   --colunas-lista: 95px 1.65fr 1fr 1.35fr 1.77fr 92px;
   display: block;
 }

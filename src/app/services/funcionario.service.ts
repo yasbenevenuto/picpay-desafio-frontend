@@ -7,7 +7,6 @@ import {
   FuncionarioPatch,
 } from '../models/funcionario.model';
 
-
 const API_URL = 'http://localhost:8080/funcionarios';
 
 @Injectable({ providedIn: 'root' })
@@ -33,7 +32,7 @@ export class FuncionarioService {
   atualizarParcialmente(id: number, dados: FuncionarioPatch): Observable<Funcionario> {
     return this.http.patch<Funcionario>(`${API_URL}/${id}`, dados);
   }
-  
+
   excluir(id: number): Observable<void> {
     return this.http.delete<void>(`${API_URL}/${id}`);
   }

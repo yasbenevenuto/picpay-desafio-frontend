@@ -9,7 +9,7 @@ import { Paginacao } from './paginacao/paginacao';
 
 const FILTRO_VAZIO: FiltroCandidatos = { nome: '', cargo: '', status: '' };
 
-const POR_PAGINA = 8;
+const POR_PAGINA = 5;
 
 @Component({
   selector: 'app-candidatos',
@@ -27,7 +27,6 @@ export class Candidatos implements OnInit {
 
   filtro = signal<FiltroCandidatos>(FILTRO_VAZIO);
 
-  // Vem das abas de status.
   aba = signal<Aba>('TODOS');
 
   pagina = signal(1);
@@ -121,7 +120,7 @@ export class Candidatos implements OnInit {
         this.candidatos.update((lista) =>
           lista.filter((item) => item.id !== candidato.id)
         );
-        // Se a última linha da página saiu, volta uma página.
+
         if (this.pagina() > this.totalPaginas()) {
           this.pagina.set(this.totalPaginas());
         }

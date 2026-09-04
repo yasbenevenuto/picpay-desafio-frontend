@@ -4,20 +4,13 @@
       class="item"
       [routerLink]="item.rota"
       routerLinkActive="ativo"
-      #estado="routerLinkActive"
+      ariaCurrentWhenActive="page"
       [routerLinkActiveOptions]="{ exact: item.exata }"
-      [attr.aria-current]="estado.isActive ? 'page' : null"
     >
       <span class="circulo">
-        <img
-          [src]="estado.isActive ? item.iconeBranco : item.icone"
-          alt=""
-          aria-hidden="true"
-        />
+        <img [src]="item.icone" alt="" aria-hidden="true" />
       </span>
-      @if (!estado.isActive) {
-        <span class="nome">{{ item.nome }}</span>
-      }
+      <span class="nome">{{ item.nome }}</span>
     </a>
   }
 </nav>

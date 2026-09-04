@@ -27,7 +27,6 @@ h1 {
   flex-shrink: 0;
 }
 
-/* Só a listagem rola: o título, os filtros, as abas e a paginação ficam fixos. */
 .lista {
   flex: 1;
   min-height: 0;

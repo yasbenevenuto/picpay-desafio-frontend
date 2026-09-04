@@ -42,6 +42,7 @@ export class Home implements OnInit {
   });
 
   ngOnInit(): void {
+
     this.service.listarTodos().subscribe({
       next: (lista) => this.candidatos.set(lista),
       error: () =>

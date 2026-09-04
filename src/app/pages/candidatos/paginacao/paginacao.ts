@@ -1,6 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
 
-/** Barra de páginas embaixo da lista. */
 @Component({
   selector: 'app-paginacao',
   templateUrl: './paginacao.html',

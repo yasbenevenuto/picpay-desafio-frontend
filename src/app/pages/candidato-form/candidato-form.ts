@@ -73,11 +73,13 @@ export class CandidatoForm implements OnInit {
     const idAtual = this.id();
 
     if (idAtual === null) {
+
       this.service.criar(dados).subscribe({
         next: (criado) => this.router.navigate(['/candidatos', criado.id]),
         error: (falha) => this.tratarErro(falha),
       });
     } else {
+
       this.service.atualizar(idAtual, dados).subscribe({
         next: () => this.router.navigate(['/candidatos', idAtual]),
         error: (falha) => this.tratarErro(falha),
@@ -140,6 +142,7 @@ export class CandidatoForm implements OnInit {
     this.salvando.set(false);
 
     if (falha.status === 400 && falha.error) {
+
       const mensagens = Object.values(falha.error).join(' ');
       this.erro.set(mensagens || 'Confira os dados enviados.');
       return;

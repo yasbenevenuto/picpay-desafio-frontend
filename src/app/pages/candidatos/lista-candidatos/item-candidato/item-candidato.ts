@@ -11,6 +11,7 @@ import {
   imports: [RouterLink],
   templateUrl: './item-candidato.html',
   styleUrl: './item-candidato.css',
+
   host: { '(document:click)': 'fecharMenu()' },
 })
 export class ItemCandidato {

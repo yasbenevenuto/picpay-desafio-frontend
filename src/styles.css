@@ -1,11 +1,5 @@
-/* ==========================================================================
-   Estilos globais — PicPay Recrutamento
-   Cores tiradas do protótipo.
-   O Bootstrap é carregado antes deste arquivo (ver angular.json).
-   ========================================================================== */
-
 :root {
-  /* Gradiente do cabeçalho */
+
   --grad-1: #14bc81;
   --grad-2: #34c790;
   --grad-3: #7fe9bb;
@@ -62,8 +56,6 @@ a {
   outline-offset: 2px;
 }
 
-/* --------------------------------------------------------------- Botões -- */
-
 .btn-preto,
 .btn-verde,
 .btn-branco {
@@ -118,8 +110,6 @@ a {
   cursor: default;
 }
 
-/* --------------------------------------------------------------- Campos -- */
-
 .campo {
   font-family: inherit;
   font-size: 0.9375rem;
@@ -158,8 +148,6 @@ a {
   font-weight: 500;
   color: #d9483b;
 }
-
-/* ----------------------------------------------------- Status: etiquetas -- */
 
 .status {
   display: inline-flex;
@@ -230,8 +218,6 @@ a {
   background-color: var(--cinza);
   color: var(--texto);
 }
-
-/* --------------------------------------------------------------- Avisos -- */
 
 .aviso-erro,
 .aviso-sucesso {
