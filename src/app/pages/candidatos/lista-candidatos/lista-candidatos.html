@@ -1,0 +1,17 @@
+<div class="cabecalho-colunas">
+  <span>Nº</span>
+  <span>Nome do(a) candidato(a)</span>
+  <span>Cargo</span>
+  <span>Departamento</span>
+  <span>Status</span>
+  <span></span>
+</div>
+
+<div class="linhas">
+  @for (candidato of candidatos(); track candidato.id) {
+    <app-item-candidato
+      [candidato]="candidato"
+      (excluir)="excluir.emit($event)"
+    />
+  }
+</div>

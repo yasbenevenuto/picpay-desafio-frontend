@@ -1,0 +1,24 @@
+<nav class="lateral" aria-label="Menu principal">
+  @for (item of itens; track item.rota) {
+    <a
+      class="item"
+      [routerLink]="item.rota"
+      routerLinkActive="ativo"
+      #estado="routerLinkActive"
+      [routerLinkActiveOptions]="{ exact: item.exata }"
+      [attr.aria-current]="estado.isActive ? 'page' : null"
+    >
+      <span class="circulo">
+        <img
+          [src]="estado.isActive ? item.iconeBranco : item.icone"
+          alt=""
+          aria-hidden="true"
+        />
+      </span>
+      <!-- No protótipo o nome só aparece nos itens que não estão ativos. -->
+      @if (!estado.isActive) {
+        <span class="nome">{{ item.nome }}</span>
+      }
+    </a>
+  }
+</nav>

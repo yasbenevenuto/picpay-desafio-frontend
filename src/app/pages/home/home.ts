@@ -3,8 +3,7 @@ import { RouterLink } from '@angular/router';
 import { FuncionarioService } from '../../services/funcionario.service';
 import {
   Funcionario,
-  StatusFuncionario,
-  classeStatus,
+  classePonto,
   rotuloStatus,
 } from '../../models/funcionario.model';
 
@@ -18,19 +17,13 @@ export class Home implements OnInit {
   private service = inject(FuncionarioService);
 
   protected readonly rotulo = rotuloStatus;
-  protected readonly classe = classeStatus;
+  protected readonly ponto = classePonto;
 
   candidatos = signal<Funcionario[]>([]);
-  carregando = signal(true);
   erro = signal('');
   termo = signal('');
 
-  total = computed(() => this.candidatos().length);
-  emAnalise = computed(() => this.contar('EM_ANALISE'));
-  aprovados = computed(() => this.contar('APROVADO'));
-  reprovados = computed(() => this.contar('REPROVADO'));
-  contratados = computed(() => this.contar('CONTRATADO'));
-
+  // Só mostra resultados depois que a pessoa digita alguma coisa.
   resultados = computed(() => {
     const busca = this.termo().trim().toLowerCase();
 
@@ -44,40 +37,24 @@ export class Home implements OnInit {
       const status = rotuloStatus(candidato.status).toLowerCase();
 
       return (
-        nome.includes(busca) ||
-        cargo.includes(busca) ||
-        status.includes(busca)
+        nome.includes(busca) || cargo.includes(busca) || status.includes(busca)
       );
     });
   });
 
   ngOnInit(): void {
-    this.carregar();
+    // GET /funcionarios
+    this.service.listarTodos().subscribe({
+      next: (lista) => this.candidatos.set(lista),
+      error: () =>
+        this.erro.set(
+          'Não foi possível falar com a API. Confira se o Spring Boot está rodando em http://localhost:8080.'
+        ),
+    });
   }
 
   aoDigitar(evento: Event): void {
     const campo = evento.target as HTMLInputElement;
     this.termo.set(campo.value);
-  }
-
-  private carregar(): void {
-    this.carregando.set(true);
-
-    this.service.listarTodos().subscribe({
-      next: (lista) => {
-        this.candidatos.set(lista);
-        this.carregando.set(false);
-      },
-      error: () => {
-        this.erro.set(
-          'Nao foi possivel falar com a API. Confira se o Spring Boot esta rodando em http://localhost:8080.'
-        );
-        this.carregando.set(false);
-      },
-    });
-  }
-
-  private contar(status: StatusFuncionario): number {
-    return this.candidatos().filter((c) => c.status === status).length;
   }
 }

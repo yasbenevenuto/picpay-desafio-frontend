@@ -1,0 +1,33 @@
+.abas {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--linha-abas);
+  overflow-x: auto;
+}
+
+.abas > .aba:first-child {
+  margin-inline-start: 1.75rem;
+}
+
+.aba {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--texto);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.65rem 1.5rem;
+  margin-bottom: -1px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.aba:hover {
+  color: var(--verde);
+}
+
+.aba-ativa {
+  font-weight: 600;
+  border-bottom-color: var(--verde);
+}

@@ -8,6 +8,7 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'candidatos', component: Candidatos },
 
+  // 'novo' vem antes de ':id', senão o Angular trataria "novo" como um id.
   { path: 'candidatos/novo', component: CandidatoForm },
   { path: 'candidatos/:id', component: CandidatoDetalhe },
   { path: 'candidatos/:id/editar', component: CandidatoForm },

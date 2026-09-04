@@ -1,0 +1,13 @@
+<header class="cabecalho">
+  <a routerLink="/" class="logo" aria-label="PicPay Recrutamento, ir para o início">
+    <img src="assets/logo-picpay.png" alt="PicPay" />
+  </a>
+
+  <div class="usuario">
+    <span class="avatar" aria-hidden="true">{{ iniciais() }}</span>
+    <span class="usuario-texto">
+      <strong>{{ nomeUsuario }}</strong>
+      <span class="usuario-cargo">{{ cargoUsuario }}</span>
+    </span>
+  </div>
+</header>

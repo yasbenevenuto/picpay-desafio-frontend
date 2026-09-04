@@ -1,87 +1,85 @@
-<p class="mb-3">
-  <a routerLink="/candidatos">Voltar para a lista</a>
+<p class="voltar">
+  <a routerLink="/candidatos">← Voltar para a lista</a>
 </p>
 
 @if (erro()) {
-  <div class="aviso-erro mb-4">{{ erro() }}</div>
+  <div class="aviso-erro">{{ erro() }}</div>
 }
 
 @if (aviso()) {
-  <div class="aviso-sucesso mb-4">{{ aviso() }}</div>
+  <div class="aviso-sucesso">{{ aviso() }}</div>
 }
 
 @if (carregando()) {
-  <p class="texto-suave">Carregando candidato...</p>
+  <p class="recado">Carregando candidato...</p>
 } @else if (candidato(); as pessoa) {
   <div class="topo">
     <div>
       <span [class]="classe(pessoa.status)">{{ rotulo(pessoa.status) }}</span>
       <h1>{{ pessoa.nome }}</h1>
-      <p class="texto-suave mb-0">
+      <p class="cargo">
         {{ pessoa.cargo }}
         @if (pessoa.departamento) {
-          - {{ pessoa.departamento }}
+          — {{ pessoa.departamento }}
         }
       </p>
     </div>
 
     <div class="botoes-topo">
-      <a [routerLink]="['/candidatos', pessoa.id, 'editar']" class="btn btn-picpay">
+      <a [routerLink]="['/candidatos', pessoa.id, 'editar']" class="btn-preto">
         Editar tudo
       </a>
-      <button type="button" class="btn btn-picpay-perigo" (click)="excluir()">
-        Excluir
-      </button>
+      <button type="button" class="btn-branco" (click)="excluir()">Excluir</button>
     </div>
   </div>
 
   <div class="colunas">
-    <section class="cartao">
+    <section class="bloco">
       <h2>Dados do candidato</h2>
       <dl class="dados">
-        <dt>Numero</dt>
-        <dd>{{ pessoa.id }}</dd>
+        <dt>Número</dt>
+        <dd>#{{ pessoa.id }}</dd>
 
         <dt>E-mail</dt>
         <dd>{{ pessoa.email }}</dd>
 
         <dt>Telefone</dt>
-        <dd>{{ pessoa.telefone || 'Nao informado' }}</dd>
+        <dd>{{ pessoa.telefone || 'Não informado' }}</dd>
 
         <dt>Cargo</dt>
         <dd>{{ pessoa.cargo }}</dd>
 
         <dt>Departamento</dt>
-        <dd>{{ pessoa.departamento || 'Nao informado' }}</dd>
+        <dd>{{ pessoa.departamento || 'Não informado' }}</dd>
 
         <dt>Cidade</dt>
-        <dd>{{ pessoa.cidade || 'Nao informada' }}</dd>
+        <dd>{{ pessoa.cidade || 'Não informada' }}</dd>
 
-        <dt>Salario</dt>
+        <dt>Salário</dt>
         <dd>
           @if (pessoa.salario !== null) {
             {{ pessoa.salario | currency: 'BRL' }}
           } @else {
-            Nao informado
+            Não informado
           }
         </dd>
       </dl>
     </section>
 
-    <section class="cartao">
-      <h2>Atualizacao rapida</h2>
-      <p class="texto-suave">
-        Muda so o que voce preencher aqui. O resto dos dados continua igual.
+    <section class="bloco">
+      <h2>Atualização rápida</h2>
+      <p class="explicacao">
+        Muda só o que você preencher aqui. O resto dos dados continua igual.
       </p>
 
       <label class="rotulo-campo" for="patch-status">Novo status</label>
       <select
         id="patch-status"
-        class="campo mb-3"
+        class="campo espaco"
         [value]="novoStatus()"
         (change)="aoMudarStatus($event)"
       >
-        <option value="">Manter como esta</option>
+        <option value="">Manter como está</option>
         @for (opcao of statusDisponiveis; track opcao) {
           <option [value]="opcao">{{ rotulo(opcao) }}</option>
         }
@@ -90,17 +88,17 @@
       <label class="rotulo-campo" for="patch-cargo">Novo cargo</label>
       <input
         id="patch-cargo"
-        class="campo mb-3"
+        class="campo espaco"
         type="text"
         placeholder="Deixe vazio para manter"
         [value]="novoCargo()"
         (input)="aoDigitarCargo($event)"
       />
 
-      <label class="rotulo-campo" for="patch-salario">Novo salario</label>
+      <label class="rotulo-campo" for="patch-salario">Novo salário</label>
       <input
         id="patch-salario"
-        class="campo mb-3"
+        class="campo espaco"
         type="number"
         step="0.01"
         min="0"
@@ -109,8 +107,8 @@
         (input)="aoDigitarSalario($event)"
       />
 
-      <button type="button" class="btn btn-picpay" (click)="salvarAlteracaoParcial()">
-        Salvar alteracao
+      <button type="button" class="btn-verde" (click)="salvarAlteracaoParcial()">
+        Salvar alteração
       </button>
     </section>
   </div>

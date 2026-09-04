@@ -1,0 +1,27 @@
+:host {
+  /* Uma definição de colunas só, usada pelo cabeçalho e por cada linha. */
+  --colunas-lista: 95px 1.65fr 1fr 1.35fr 1.77fr 92px;
+  display: block;
+}
+
+.cabecalho-colunas {
+  display: grid;
+  grid-template-columns: var(--colunas-lista);
+  gap: 1rem;
+  padding: 0 1.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.linhas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+@media (max-width: 900px) {
+  .cabecalho-colunas {
+    display: none;
+  }
+}

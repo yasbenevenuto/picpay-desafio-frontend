@@ -9,6 +9,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { routes } from './app.routes';
 
+// Faz salarios e datas aparecerem no formato brasileiro (R$ 8.500,00).
 registerLocaleData(localePt, 'pt-BR');
 
 export const appConfig: ApplicationConfig = {

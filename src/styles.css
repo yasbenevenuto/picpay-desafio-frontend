@@ -1,191 +1,258 @@
+/* ==========================================================================
+   Estilos globais — PicPay Recrutamento
+   Cores tiradas do protótipo.
+   O Bootstrap é carregado antes deste arquivo (ver angular.json).
+   ========================================================================== */
 
 :root {
-  --verde: #21c25e;
-  --verde-escuro: #1aa34d;
-  --verde-suave: #e8f8ee;
-  --tinta: #1b1f23;
-  --tinta-suave: #667085;
-  --borda: #e5e8eb;
-  --fundo-suave: #fafbfc;
+  /* Gradiente do cabeçalho */
+  --grad-1: #14bc81;
+  --grad-2: #34c790;
+  --grad-3: #7fe9bb;
+  --grad-4: #29f5ae;
+
+  --verde: #1ba284;
+  --verde-escuro: #158a70;
+  --preto: #000000;
+  --texto: #111111;
+  --texto-apoio: #6f6f6f;
+
+  --cinza: #f6f6f4;
+  --cinza-linha: #f2f2f2;
+  --borda: #dddddd;
+  --linha-abas: #e4e4e4;
+
+  --raio: 15px;
+  --raio-grande: 20px;
+  --raio-pilula: 999px;
+
+  --altura-cabecalho: 76px;
+  --largura-lateral: 100px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
+  margin: 0;
   background-color: #ffffff;
-  color: var(--tinta);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
-    sans-serif;
+  color: var(--texto);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3 {
+  margin: 0;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--tinta);
+  color: var(--texto);
 }
 
 a {
-  color: var(--verde-escuro);
+  color: inherit;
   text-decoration: none;
 }
 
-a:hover {
-  color: var(--verde);
-}
-
-
-.btn-picpay {
-  background-color: var(--verde);
-  border: 1px solid var(--verde);
-  color: #ffffff;
-  font-weight: 600;
-  border-radius: 999px;
-  padding: 0.55rem 1.5rem;
-}
-
-.btn-picpay:hover,
-.btn-picpay:focus {
-  background-color: var(--verde-escuro);
-  border-color: var(--verde-escuro);
-  color: #ffffff;
-}
-
-.btn-picpay-claro {
-  background-color: #ffffff;
-  border: 1px solid var(--borda);
-  color: var(--tinta);
-  font-weight: 600;
-  border-radius: 999px;
-  padding: 0.55rem 1.5rem;
-}
-
-.btn-picpay-claro:hover,
-.btn-picpay-claro:focus {
-  border-color: var(--verde);
-  color: var(--verde-escuro);
-}
-
-.btn-picpay-perigo {
-  background-color: #ffffff;
-  border: 1px solid #f2c2c2;
-  color: #c0392b;
-  font-weight: 600;
-  border-radius: 999px;
-  padding: 0.55rem 1.5rem;
-}
-
-.btn-picpay-perigo:hover,
-.btn-picpay-perigo:focus {
-  background-color: #fdf1f0;
-  color: #a93226;
-}
-
-.btn-picpay:focus-visible,
-.btn-picpay-claro:focus-visible,
-.btn-picpay-perigo:focus-visible,
-.campo:focus-visible,
-a:focus-visible {
+:focus-visible {
   outline: 3px solid var(--verde);
   outline-offset: 2px;
 }
 
+/* --------------------------------------------------------------- Botões -- */
+
+.btn-preto,
+.btn-verde,
+.btn-branco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: var(--raio-pilula);
+  padding: 0.55rem 1.5rem;
+  height: 36px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn-preto {
+  background-color: var(--preto);
+  color: #ffffff;
+}
+
+.btn-preto:hover {
+  background-color: #262626;
+  color: #ffffff;
+}
+
+.btn-verde {
+  background-color: var(--verde);
+  color: #ffffff;
+}
+
+.btn-verde:hover {
+  background-color: var(--verde-escuro);
+  color: #ffffff;
+}
+
+.btn-branco {
+  background-color: #ffffff;
+  border-color: var(--borda);
+  color: var(--texto);
+}
+
+.btn-branco:hover {
+  border-color: var(--verde);
+  color: var(--verde);
+}
+
+.btn-preto:disabled,
+.btn-verde:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* --------------------------------------------------------------- Campos -- */
 
 .campo {
-  border: 1px solid var(--borda);
-  border-radius: 10px;
-  padding: 0.65rem 0.9rem;
-  width: 100%;
-  color: var(--tinta);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--texto);
   background-color: #ffffff;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-pilula);
+  padding: 0.5rem 1.05rem;
+  height: 36px;
+  width: 100%;
 }
 
 .campo:focus {
   border-color: var(--verde);
-  box-shadow: 0 0 0 3px var(--verde-suave);
   outline: none;
 }
 
 .campo.invalido {
-  border-color: #e07a72;
+  border-color: #d9483b;
+}
+
+.campo::placeholder {
+  color: var(--texto-apoio);
 }
 
 .rotulo-campo {
+  display: block;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--tinta-suave);
-  margin-bottom: 0.35rem;
-  display: block;
+  margin-bottom: 0.4rem;
 }
 
 .erro-campo {
+  margin: 0.35rem 0 0 1.15rem;
   font-size: 0.8125rem;
-  color: #c0392b;
-  margin-top: 0.25rem;
+  font-weight: 500;
+  color: #d9483b;
 }
 
+/* ----------------------------------------------------- Status: etiquetas -- */
 
-.cartao {
-  background-color: #ffffff;
-  border: 1px solid var(--borda);
-  border-radius: 16px;
-  padding: 1.5rem;
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
+.status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-analise::before {
+  background-color: #e8a317;
+}
+
+.status-aprovado::before {
+  background-color: #2f6fed;
+}
+
+.status-reprovado::before {
+  background-color: #d9483b;
+}
+
+.status-contratado::before {
+  background-color: var(--verde);
+}
+
+.status-neutro::before {
+  background-color: var(--borda);
+}
 
 .etiqueta {
   display: inline-block;
   font-size: 0.8125rem;
   font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--raio-pilula);
   white-space: nowrap;
 }
 
 .etiqueta-analise {
-  background-color: #fff6e5;
-  color: #a56b00;
+  background-color: #fdf3e0;
+  color: #8a5c00;
 }
 
 .etiqueta-aprovado {
-  background-color: var(--verde-suave);
-  color: var(--verde-escuro);
+  background-color: #e7effd;
+  color: #1a4fbc;
 }
 
 .etiqueta-reprovado {
   background-color: #fdeceb;
-  color: #c0392b;
+  color: #a3352a;
 }
 
 .etiqueta-contratado {
-  background-color: var(--verde);
-  color: #ffffff;
+  background-color: #e6f7f1;
+  color: var(--verde-escuro);
 }
 
 .etiqueta-neutro {
-  background-color: #f1f3f5;
-  color: var(--tinta-suave);
+  background-color: var(--cinza);
+  color: var(--texto);
 }
 
+/* --------------------------------------------------------------- Avisos -- */
+
+.aviso-erro,
+.aviso-sucesso {
+  border-radius: var(--raio);
+  padding: 0.85rem 1.15rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
 
 .aviso-erro {
   background-color: #fdeceb;
-  border: 1px solid #f2c2c2;
-  color: #a93226;
-  border-radius: 12px;
-  padding: 0.9rem 1.1rem;
+  color: #a3352a;
 }
 
 .aviso-sucesso {
-  background-color: var(--verde-suave);
-  border: 1px solid var(--verde);
+  background-color: #e6f7f1;
   color: var(--verde-escuro);
-  border-radius: 12px;
-  padding: 0.9rem 1.1rem;
 }
 
-.texto-suave {
-  color: var(--tinta-suave);
+.texto-apoio {
+  color: var(--texto-apoio);
 }
 
 @media (prefers-reduced-motion: reduce) {

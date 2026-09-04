@@ -1,26 +1,26 @@
-<p class="mb-3">
-  <a routerLink="/candidatos">Voltar para a lista</a>
+<p class="voltar">
+  <a routerLink="/candidatos">← Voltar para a lista</a>
 </p>
 
 <h1>{{ editando() ? 'Editar candidato' : 'Novo candidato' }}</h1>
-<p class="texto-suave subtitulo">
+<p class="subtitulo">
   @if (editando()) {
-    Salvar envia um PUT e substitui todos os campos do candidato. Deixe
-    preenchido o que deve continuar como esta.
+    Salvar substitui todos os campos do candidato. Deixe preenchido o que deve
+    continuar como está.
   } @else {
-    Nome, e-mail e cargo sao obrigatorios. O numero do candidato e gerado
+    Nome, e-mail e cargo são obrigatórios. O número do candidato é gerado
     automaticamente pela API.
   }
 </p>
 
 @if (erro()) {
-  <div class="aviso-erro mb-4">{{ erro() }}</div>
+  <div class="aviso-erro">{{ erro() }}</div>
 }
 
 @if (carregando()) {
-  <p class="texto-suave">Carregando dados do candidato...</p>
+  <p class="recado">Carregando dados do candidato...</p>
 } @else {
-  <form class="cartao formulario" [formGroup]="formulario" (ngSubmit)="salvar()">
+  <form class="formulario" [formGroup]="formulario" (ngSubmit)="salvar()">
     <div class="linha">
       <div class="grupo">
         <label class="rotulo-campo" for="nome">Nome completo</label>
@@ -46,7 +46,7 @@
           formControlName="email"
         />
         @if (invalido('email')) {
-          <p class="erro-campo">Informe um e-mail valido.</p>
+          <p class="erro-campo">Informe um e-mail válido.</p>
         }
       </div>
     </div>
@@ -68,12 +68,7 @@
 
       <div class="grupo">
         <label class="rotulo-campo" for="departamento">Departamento</label>
-        <input
-          id="departamento"
-          class="campo"
-          type="text"
-          formControlName="departamento"
-        />
+        <input id="departamento" class="campo" type="text" formControlName="departamento" />
       </div>
     </div>
 
@@ -91,7 +86,7 @@
 
     <div class="linha">
       <div class="grupo">
-        <label class="rotulo-campo" for="salario">Salario pretendido</label>
+        <label class="rotulo-campo" for="salario">Salário pretendido</label>
         <input
           id="salario"
           class="campo"
@@ -113,10 +108,10 @@
     </div>
 
     <div class="acoes">
-      <button type="submit" class="btn btn-picpay" [disabled]="salvando()">
+      <button type="submit" class="btn-preto" [disabled]="salvando()">
         {{ salvando() ? 'Salvando...' : 'Salvar candidato' }}
       </button>
-      <a routerLink="/candidatos" class="btn btn-picpay-claro">Cancelar</a>
+      <a routerLink="/candidatos" class="btn-branco">Cancelar</a>
     </div>
   </form>
 }

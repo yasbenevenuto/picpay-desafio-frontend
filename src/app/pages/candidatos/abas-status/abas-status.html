@@ -1,0 +1,13 @@
+<nav class="abas" aria-label="Filtrar por status">
+  @for (aba of abas; track aba) {
+    <button
+      type="button"
+      class="aba"
+      [class.aba-ativa]="ativa() === aba"
+      [attr.aria-current]="ativa() === aba ? 'true' : null"
+      (click)="mudou.emit(aba)"
+    >
+      {{ rotulo(aba) }}
+    </button>
+  }
+</nav>

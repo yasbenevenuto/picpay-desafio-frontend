@@ -31,6 +31,7 @@ export class CandidatoDetalhe implements OnInit {
   erro = signal('');
   aviso = signal('');
 
+  // Campos da atualização parcial (PATCH). Ficam vazios até a pessoa mexer.
   novoStatus = signal('');
   novoCargo = signal('');
   novoSalario = signal('');
@@ -52,6 +53,11 @@ export class CandidatoDetalhe implements OnInit {
     this.novoSalario.set((evento.target as HTMLInputElement).value);
   }
 
+  /**
+   * PATCH /funcionarios/{id}
+   * Monta o corpo só com o que foi preenchido. O backend ignora campos nulos,
+   * então tudo que não for enviado continua do jeito que estava.
+   */
   salvarAlteracaoParcial(): void {
     const atual = this.candidato();
 
@@ -83,12 +89,12 @@ export class CandidatoDetalhe implements OnInit {
     this.service.atualizarParcialmente(atual.id, dados).subscribe({
       next: (atualizado) => {
         this.candidato.set(atualizado);
-        this.limparCamposParciais();
+        this.novoStatus.set('');
+        this.novoCargo.set('');
+        this.novoSalario.set('');
         this.aviso.set('Dados atualizados.');
       },
-      error: () => {
-        this.erro.set('Nao foi possivel atualizar. Tente novamente.');
-      },
+      error: () => this.erro.set('Não foi possível atualizar. Tente novamente.'),
     });
   }
 
@@ -100,22 +106,24 @@ export class CandidatoDetalhe implements OnInit {
     }
 
     const confirmado = confirm(
-      `Excluir ${atual.nome} do processo? Essa acao nao tem volta.`
+      `Excluir ${atual.nome} do processo? Essa ação não tem volta.`
     );
 
     if (!confirmado) {
       return;
     }
 
+    // DELETE /funcionarios/{id}
     this.service.excluir(atual.id).subscribe({
       next: () => this.router.navigate(['/candidatos']),
-      error: () => this.erro.set('Nao foi possivel excluir o candidato.'),
+      error: () => this.erro.set('Não foi possível excluir o candidato.'),
     });
   }
 
   private carregar(id: number): void {
     this.carregando.set(true);
 
+    // GET /funcionarios/{id}
     this.service.buscarPorId(id).subscribe({
       next: (encontrado) => {
         this.candidato.set(encontrado);
@@ -123,16 +131,10 @@ export class CandidatoDetalhe implements OnInit {
       },
       error: () => {
         this.erro.set(
-          'Candidato nao encontrado. Ele pode ter sido excluido, ou a API pode estar parada.'
+          'Candidato não encontrado. Ele pode ter sido excluído, ou a API pode estar parada.'
         );
         this.carregando.set(false);
       },
     });
-  }
-
-  private limparCamposParciais(): void {
-    this.novoStatus.set('');
-    this.novoCargo.set('');
-    this.novoSalario.set('');
   }
 }

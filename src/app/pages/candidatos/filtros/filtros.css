@@ -1,0 +1,23 @@
+.linha-filtros {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.botao-filtrar {
+  width: 140px;
+  margin-inline-start: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .linha-filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .botao-filtrar {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+}

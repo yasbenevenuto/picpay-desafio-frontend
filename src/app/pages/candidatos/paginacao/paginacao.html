@@ -1,0 +1,33 @@
+<div class="rodape">
+  <p class="contagem">
+    Mostrando {{ primeiro() }}–{{ ultimo() }} de {{ totalItens() }}
+  </p>
+
+  <nav class="paginas" aria-label="Páginas">
+    <button
+      type="button"
+      class="passo"
+      (click)="anterior()"
+      [disabled]="pagina() === 1"
+      aria-label="Página anterior"
+    >‹</button>
+
+    @for (numero of numeros(); track numero) {
+      <button
+        type="button"
+        class="passo"
+        [class.passo-ativo]="pagina() === numero"
+        [attr.aria-current]="pagina() === numero ? 'page' : null"
+        (click)="mudou.emit(numero)"
+      >{{ numero }}</button>
+    }
+
+    <button
+      type="button"
+      class="passo"
+      (click)="proxima()"
+      [disabled]="pagina() === totalPaginas()"
+      aria-label="Próxima página"
+    >›</button>
+  </nav>
+</div>

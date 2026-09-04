@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  width: 160px;
+}
+
+.campo {
+  cursor: pointer;
+}
+
+/* Quando nada foi escolhido, o texto fica igual ao de um placeholder. */
+select.campo.vazio {
+  color: var(--texto-apoio);
+}
+
+@media (max-width: 900px) {
+  :host {
+    width: 100%;
+  }
+}

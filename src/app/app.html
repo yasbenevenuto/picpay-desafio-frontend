@@ -1,29 +1,9 @@
-<header class="cabecalho">
-  <div class="container cabecalho-conteudo">
-    <a routerLink="/" class="marca">
-      <span class="marca-nome">PicPay</span>
-      <span class="marca-area">Recrutamento</span>
-    </a>
+<app-cabecalho />
 
-    <nav class="menu">
-      <a routerLink="/" routerLinkActive="ativo" [routerLinkActiveOptions]="{ exact: true }">
-        Inicio
-      </a>
-      <a routerLink="/candidatos" routerLinkActive="ativo">Candidatos</a>
-    </nav>
+<div class="corpo">
+  <app-barra-lateral />
 
-    <a routerLink="/candidatos/novo" class="btn btn-picpay">Novo candidato</a>
-  </div>
-</header>
-
-<main class="container conteudo">
-  <router-outlet />
-</main>
-
-<footer class="rodape">
-  <div class="container">
-    <p class="texto-suave mb-0">
-      Sistema interno de contratacao - dados armazenados em memoria pela API Spring Boot.
-    </p>
-  </div>
-</footer>
+  <main class="area">
+    <router-outlet />
+  </main>
+</div>

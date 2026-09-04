@@ -1,0 +1,24 @@
+<div class="linha-filtros">
+  <app-campo-filtro
+    rotulo="Nome"
+    [valor]="nome()"
+    (valorMudou)="nome.set($event)"
+  />
+
+  <app-campo-filtro
+    rotulo="Cargo"
+    [valor]="cargo()"
+    (valorMudou)="cargo.set($event)"
+  />
+
+  <app-campo-filtro
+    rotulo="Status"
+    [valor]="status()"
+    [opcoes]="opcoesStatus"
+    (valorMudou)="status.set($event)"
+  />
+
+  <button type="button" class="btn-verde botao-filtrar" (click)="aplicar()">
+    Filtrar
+  </button>
+</div>

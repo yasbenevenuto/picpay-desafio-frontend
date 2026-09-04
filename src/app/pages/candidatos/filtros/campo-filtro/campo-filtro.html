@@ -1,0 +1,22 @@
+@if (opcoes().length > 0) {
+  <select
+    class="campo"
+    [class.vazio]="valor() === ''"
+    [attr.aria-label]="rotulo()"
+    [value]="valor()"
+    (change)="aoSelecionar($event)"
+  >
+    @for (opcao of opcoes(); track opcao.valor) {
+      <option [value]="opcao.valor">{{ opcao.texto }}</option>
+    }
+  </select>
+} @else {
+  <input
+    class="campo"
+    type="text"
+    [attr.aria-label]="rotulo()"
+    [placeholder]="rotulo()"
+    [value]="valor()"
+    (input)="aoDigitar($event)"
+  />
+}
