@@ -23,7 +23,6 @@ export class Home implements OnInit {
   erro = signal('');
   termo = signal('');
 
-  // Só mostra resultados depois que a pessoa digita alguma coisa.
   resultados = computed(() => {
     const busca = this.termo().trim().toLowerCase();
 
@@ -43,7 +42,6 @@ export class Home implements OnInit {
   });
 
   ngOnInit(): void {
-    // GET /funcionarios
     this.service.listarTodos().subscribe({
       next: (lista) => this.candidatos.set(lista),
       error: () =>

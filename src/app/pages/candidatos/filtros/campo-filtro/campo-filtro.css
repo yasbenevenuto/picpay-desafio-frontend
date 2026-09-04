@@ -7,7 +7,6 @@
   cursor: pointer;
 }
 
-/* Quando nada foi escolhido, o texto fica igual ao de um placeholder. */
 select.campo.vazio {
   color: var(--texto-apoio);
 }

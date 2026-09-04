@@ -31,7 +31,6 @@ export class CandidatoDetalhe implements OnInit {
   erro = signal('');
   aviso = signal('');
 
-  // Campos da atualização parcial (PATCH). Ficam vazios até a pessoa mexer.
   novoStatus = signal('');
   novoCargo = signal('');
   novoSalario = signal('');
@@ -53,11 +52,6 @@ export class CandidatoDetalhe implements OnInit {
     this.novoSalario.set((evento.target as HTMLInputElement).value);
   }
 
-  /**
-   * PATCH /funcionarios/{id}
-   * Monta o corpo só com o que foi preenchido. O backend ignora campos nulos,
-   * então tudo que não for enviado continua do jeito que estava.
-   */
   salvarAlteracaoParcial(): void {
     const atual = this.candidato();
 
@@ -113,7 +107,6 @@ export class CandidatoDetalhe implements OnInit {
       return;
     }
 
-    // DELETE /funcionarios/{id}
     this.service.excluir(atual.id).subscribe({
       next: () => this.router.navigate(['/candidatos']),
       error: () => this.erro.set('Não foi possível excluir o candidato.'),
@@ -123,7 +116,6 @@ export class CandidatoDetalhe implements OnInit {
   private carregar(id: number): void {
     this.carregando.set(true);
 
-    // GET /funcionarios/{id}
     this.service.buscarPorId(id).subscribe({
       next: (encontrado) => {
         this.candidato.set(encontrado);

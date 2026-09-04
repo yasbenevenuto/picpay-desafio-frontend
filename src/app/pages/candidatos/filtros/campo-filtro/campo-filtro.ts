@@ -5,24 +5,16 @@ export interface OpcaoCampo {
   texto: string;
 }
 
-/**
- * Um campo da barra de filtros.
- *
- * Se receber uma lista de opções, vira uma caixa de seleção.
- * Se não receber nada, vira um campo de texto comum.
- */
 @Component({
   selector: 'app-campo-filtro',
   templateUrl: './campo-filtro.html',
   styleUrl: './campo-filtro.css',
 })
 export class CampoFiltro {
-  // input() cria uma entrada do componente: o pai passa o valor pelo HTML.
   rotulo = input.required<string>();
   valor = input('');
   opcoes = input<OpcaoCampo[]>([]);
 
-  // output() cria uma saída: o componente avisa o pai quando algo muda.
   valorMudou = output<string>();
 
   aoDigitar(evento: Event): void {

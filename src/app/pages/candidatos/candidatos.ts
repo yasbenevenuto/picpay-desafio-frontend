@@ -25,7 +25,6 @@ export class Candidatos implements OnInit {
   erro = signal('');
   aviso = signal('');
 
-  // Vem do botão Filtrar. Só muda quando a pessoa clica no botão.
   filtro = signal<FiltroCandidatos>(FILTRO_VAZIO);
 
   // Vem das abas de status.
@@ -59,7 +58,6 @@ export class Candidatos implements OnInit {
     Math.max(1, Math.ceil(this.listaFiltrada().length / POR_PAGINA))
   );
 
-  // Recorta só os candidatos da página atual.
   listaDaPagina = computed(() => {
     const inicio = (this.pagina() - 1) * POR_PAGINA;
     return this.listaFiltrada().slice(inicio, inicio + POR_PAGINA);
@@ -77,7 +75,6 @@ export class Candidatos implements OnInit {
     this.carregar();
   }
 
-  // Filtrar ou trocar de aba sempre volta para a primeira página.
   aplicarFiltro(valores: FiltroCandidatos): void {
     this.filtro.set(valores);
     this.pagina.set(1);
@@ -96,7 +93,6 @@ export class Candidatos implements OnInit {
     this.carregando.set(true);
     this.erro.set('');
 
-    // GET /funcionarios
     this.service.listarTodos().subscribe({
       next: (lista) => {
         this.candidatos.set(lista);
@@ -120,7 +116,6 @@ export class Candidatos implements OnInit {
       return;
     }
 
-    // DELETE /funcionarios/{id}
     this.service.excluir(candidato.id).subscribe({
       next: () => {
         this.candidatos.update((lista) =>

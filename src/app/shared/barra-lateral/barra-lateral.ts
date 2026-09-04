@@ -9,10 +9,6 @@ interface ItemMenu {
   iconeBranco: string;
 }
 
-/**
- * Menu lateral. O item ativo vira um círculo preto com o ícone branco;
- * os outros aparecem como ícone preto com o nome embaixo.
- */
 @Component({
   selector: 'app-barra-lateral',
   imports: [RouterLink, RouterLinkActive],

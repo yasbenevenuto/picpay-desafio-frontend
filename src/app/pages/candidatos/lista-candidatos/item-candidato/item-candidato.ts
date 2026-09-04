@@ -6,13 +6,11 @@ import {
   rotuloStatus,
 } from '../../../../models/funcionario.model';
 
-/** Uma linha da lista, com o menu "Ações" que abre Excluir e Editar. */
 @Component({
   selector: 'app-item-candidato',
   imports: [RouterLink],
   templateUrl: './item-candidato.html',
   styleUrl: './item-candidato.css',
-  // Clicar em qualquer lugar da página fecha o menu aberto.
   host: { '(document:click)': 'fecharMenu()' },
 })
 export class ItemCandidato {
@@ -24,7 +22,6 @@ export class ItemCandidato {
 
   menuAberto = signal(false);
 
-  // stopPropagation evita que o clique chegue no document e feche na hora.
   alternarMenu(evento: Event): void {
     evento.stopPropagation();
     this.menuAberto.update((aberto) => !aberto);

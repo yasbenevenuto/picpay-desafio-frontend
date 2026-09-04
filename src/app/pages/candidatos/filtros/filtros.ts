@@ -9,7 +9,6 @@ export interface FiltroCandidatos {
   status: string;
 }
 
-/** Linha de filtros: Nome, Cargo, Status e o botão Filtrar. */
 @Component({
   selector: 'app-filtros',
   imports: [CampoFiltro],
@@ -23,7 +22,6 @@ export class Filtros {
   cargo = signal('');
   status = signal('');
 
-  // A primeira opção, vazia, funciona como o texto de dica do campo.
   opcoesStatus: OpcaoCampo[] = [
     { valor: '', texto: 'Status' },
     ...STATUS_DISPONIVEIS.map((valor) => ({

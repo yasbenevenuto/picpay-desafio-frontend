@@ -5,10 +5,8 @@ import {
   rotuloStatus,
 } from '../../../models/funcionario.model';
 
-// 'TODOS' existe só na tela: é a aba que não filtra nada.
 export type Aba = StatusFuncionario | 'TODOS';
 
-/** Abas de status, com sublinhado verde na que está selecionada. */
 @Component({
   selector: 'app-abas-status',
   templateUrl: './abas-status.html',

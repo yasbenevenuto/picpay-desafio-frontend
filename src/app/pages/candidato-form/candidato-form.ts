@@ -10,10 +10,6 @@ import {
   rotuloStatus,
 } from '../../models/funcionario.model';
 
-/**
- * Uma tela só para cadastrar (POST) e para editar (PUT).
- * Se a rota trouxer um id, estamos editando. Se não, estamos cadastrando.
- */
 @Component({
   selector: 'app-candidato-form',
   imports: [ReactiveFormsModule, RouterLink],
@@ -34,7 +30,6 @@ export class CandidatoForm implements OnInit {
   salvando = signal(false);
   erro = signal('');
 
-  // Mesmas regras do FuncionarioRequestDTO: nome, e-mail e cargo obrigatórios.
   formulario = this.fb.group({
     nome: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -59,7 +54,6 @@ export class CandidatoForm implements OnInit {
     return this.id() !== null;
   }
 
-  // Mostra o erro embaixo do campo só depois que a pessoa mexeu nele.
   invalido(nomeDoCampo: string): boolean {
     const campo = this.formulario.get(nomeDoCampo);
     return campo !== null && campo.invalid && campo.touched;
@@ -79,13 +73,11 @@ export class CandidatoForm implements OnInit {
     const idAtual = this.id();
 
     if (idAtual === null) {
-      // POST /funcionarios
       this.service.criar(dados).subscribe({
         next: (criado) => this.router.navigate(['/candidatos', criado.id]),
         error: (falha) => this.tratarErro(falha),
       });
     } else {
-      // PUT /funcionarios/{id}
       this.service.atualizar(idAtual, dados).subscribe({
         next: () => this.router.navigate(['/candidatos', idAtual]),
         error: (falha) => this.tratarErro(falha),
@@ -96,8 +88,6 @@ export class CandidatoForm implements OnInit {
   private carregarCandidato(id: number): void {
     this.carregando.set(true);
 
-    // GET /funcionarios/{id} — o PUT troca todos os campos, então o
-    // formulário precisa vir preenchido com os valores atuais.
     this.service.buscarPorId(id).subscribe({
       next: (candidato) => {
         this.formulario.patchValue({
@@ -150,7 +140,6 @@ export class CandidatoForm implements OnInit {
     this.salvando.set(false);
 
     if (falha.status === 400 && falha.error) {
-      // O backend devolve um objeto campo -> mensagem quando a validação falha.
       const mensagens = Object.values(falha.error).join(' ');
       this.erro.set(mensagens || 'Confira os dados enviados.');
       return;

@@ -1,4 +1,3 @@
-// Espelha o enum StatusFuncionario do backend.
 export type StatusFuncionario =
   | 'EM_ANALISE'
   | 'APROVADO'
@@ -12,7 +11,6 @@ export const STATUS_DISPONIVEIS: StatusFuncionario[] = [
   'CONTRATADO',
 ];
 
-// Como o backend devolve (classe Funcionario).
 export interface Funcionario {
   id: number;
   nome: string;
@@ -25,7 +23,6 @@ export interface Funcionario {
   status: StatusFuncionario | null;
 }
 
-// Corpo do POST e do PUT (FuncionarioRequestDTO). Não tem id: o backend gera.
 export interface FuncionarioRequest {
   nome: string;
   email: string;
@@ -37,7 +34,6 @@ export interface FuncionarioRequest {
   status: StatusFuncionario | null;
 }
 
-// Corpo do PATCH (FuncionarioPatchDTO). Todos os campos são opcionais.
 export interface FuncionarioPatch {
   nome?: string;
   email?: string;
@@ -49,7 +45,6 @@ export interface FuncionarioPatch {
   status?: StatusFuncionario;
 }
 
-// Texto que aparece na tela para cada status.
 export function rotuloStatus(status: StatusFuncionario | null): string {
   switch (status) {
     case 'EM_ANALISE':
@@ -65,7 +60,6 @@ export function rotuloStatus(status: StatusFuncionario | null): string {
   }
 }
 
-// Apelido curto do status, usado para montar as classes de cor no CSS.
 export function codigoStatus(status: StatusFuncionario | null): string {
   switch (status) {
     case 'EM_ANALISE':
@@ -81,12 +75,10 @@ export function codigoStatus(status: StatusFuncionario | null): string {
   }
 }
 
-// Etiqueta colorida (usada na Início e nos detalhes).
 export function classeStatus(status: StatusFuncionario | null): string {
   return 'etiqueta etiqueta-' + codigoStatus(status);
 }
 
-// Bolinha colorida + texto (usada na tabela de candidatos).
 export function classePonto(status: StatusFuncionario | null): string {
   return 'status status-' + codigoStatus(status);
 }
